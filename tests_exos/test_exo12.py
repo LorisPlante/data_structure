@@ -11,3 +11,4 @@ def test_count_palindromes_seven():
 
 def test_count_palindromes_ten():
     assert count_palindromes(["kayak", "tenet", "radar", "level", "rotor", "hello", "world", "madam", "racecar", "civic", "deified", "noon"]) == 10
+    

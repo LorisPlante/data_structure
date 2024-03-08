@@ -8,3 +8,4 @@ def test_max_of_three_numbers_height():
 
 def test_max_of_three_numbers_nine():
     assert max_of_three_numbers(9, 2, 6) == 9
+    

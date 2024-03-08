@@ -26,7 +26,6 @@ def test_fail_to_guess(mocker):
 
 def test_input_value_error(mocker):
     mocker.patch('exo8.random.randint', return_value=42)
-    # Simuler une entrée non valide suivie d'une entrée valide
     mocker.patch('builtins.input', side_effect=['pas un nombre', '42'])
     mock_print = mocker.patch('builtins.print')
 

@@ -12,4 +12,4 @@ def test_out_of_stock_products():
         (3, 300),
         (4, 400),
     ]
-    assert out_of_stock_products(products) == expected, "Should be [(4, 400), (3, 300), (2, 200), (1, 100)]"
+    assert out_of_stock_products(products) == expected
