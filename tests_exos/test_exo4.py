@@ -1,26 +1,7 @@
-from exos.exo4 import FilterList
+from exos.exo4 import remove_duplicates
 
+def test_remove_duplicates():
+    assert remove_duplicates([1, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9, 9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-def test_giveMeaList():
-    data = [1, 2, 3, 4, 5, 1, 2, 30, 45, 5, 1, 2, 30, 2, 3, 4]
-    assert FilterList.giveMeaList(data) == [1, 2, 3, 4, 5, 30]
-
-
-def test_giveMeaList_empty():
-    data = []
-    assert FilterList.giveMeaList(data) == []
-
-
-def test_giveMeaList_single():
-    data = [1]
-    assert FilterList.giveMeaList(data) == [1]
-
-
-def test_giveMeaList_negativ():
-    data = [-1, -2, -3, -4, -5, -1, -2, -30, -45, -5, -1, -2, -30, -2, -3, -4]
-    assert FilterList.giveMeaList(data) == [-5, -4, -3, -2, -1, -30, -45]
-
-
-def test_giveMeaList_string():
-    data = ['a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e']
-    assert FilterList.giveMeaList(data) == ['a', 'b', 'c', 'd', 'e']
+def test_remove_duplicates_bis():
+    assert remove_duplicates([1, 2, 3, 3, 3, 4, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 12]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
