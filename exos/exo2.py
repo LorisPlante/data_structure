@@ -6,7 +6,7 @@ class ExoString:
 
     def extract_python(self):
         mot_pyhton = self.chaine_donnee.split()[0]
-        return mot_pyhton 
+        return mot_pyhton
 
     def extract_apprendre(self):
         mot_apprendre = self.chaine_donnee[-9:]

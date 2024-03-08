@@ -1,5 +1,6 @@
 from exos.exo2 import ExoString
 
+
 def test_extract_python():
     exo_string = ExoString()
     exo_string.chaine_donnee = "Python est un langage de programmation puissant et facile à apprendre"

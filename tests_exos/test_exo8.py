@@ -1,34 +1,25 @@
-from exos.exo8 import guess_number_game
+import unittest
+from unittest.mock import patch
+from io import StringIO
+import random
+from exos.exo8 import deviner_nombre
 
-def test_guess_correctly_first_try(mocker):
-    mocker.patch('exo8.random.randint', return_value=42)
-    mocker.patch('builtins.input', return_value='42')
-    mock_print = mocker.patch('builtins.print')
 
-    guess_number_game(max_attempts=3)
-    mock_print.assert_any_call("Bravo! Vous avez trouvé le nombre mystère en 1 tentatives.")
+class TestDevinerNombre(unittest.TestCase):
+    @patch('sys.stdin', StringIO('50\n'))
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_devine_nombre_trop_grand(self, mock_stdout, mock_input):
+        random.seed(0)
+        deviner_nombre()
+        self.assertEqual(mock_stdout.getvalue(), "Devinez le nombre mystère entre 1 et 100. Vous avez 5 tentatives.\nLe nombre mystère est plus grand.\nLe nombre mystère est plus petit.\nLe nombre mystère est plus grand.\nLe nombre mystère est plus petit.\nBravo ! Vous avez deviné le nombre mystère, c'était 33.\n")
 
-def test_guess_correctly_third_try(mocker):
-    mocker.patch('exo8.random.randint', return_value=42)
-    mocker.patch('builtins.input', side_effect=['20', '60', '42'])
-    mock_print = mocker.patch('builtins.print')
+    @patch('sys.stdin', StringIO('50\n75\n63\n56\n59\n'))
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_devine_nombre_trop_petit(self, mock_stdout, mock_input):
+        random.seed(1)
+        deviner_nombre()
+        self.assertEqual(mock_stdout.getvalue(), "Devinez le nombre mystère entre 1 et 100. Vous avez 5 tentatives.\nLe nombre mystère est plus petit.\nLe nombre mystère est plus petit.\nLe nombre mystère est plus grand.\nLe nombre mystère est plus grand.\nBravo ! Vous avez deviné le nombre mystère, c'était 59.\n")
 
-    guess_number_game(max_attempts=3)
-    mock_print.assert_any_call("Bravo! Vous avez trouvé le nombre mystère en 3 tentatives.")
 
-def test_fail_to_guess(mocker):
-    mocker.patch('exo8.random.randint', return_value=42)
-    mocker.patch('builtins.input', side_effect=['20', '60', '80'])
-    mock_print = mocker.patch('builtins.print')
-
-    guess_number_game(max_attempts=3)
-    mock_print.assert_any_call(f"Désolé, vous avez utilisé toutes vos tentatives. Le nombre était : 42")
-
-def test_input_value_error(mocker):
-    mocker.patch('exo8.random.randint', return_value=42)
-    mocker.patch('builtins.input', side_effect=['pas un nombre', '42'])
-    mock_print = mocker.patch('builtins.print')
-
-    guess_number_game(max_attempts=3)
-    mock_print.assert_any_call("Veuillez entrer un nombre valide.")
-    mock_print.assert_any_call("Bravo! Vous avez trouvé le nombre mystère en 2 tentatives.")
+if __name__ == '__main__':
+    unittest.main()

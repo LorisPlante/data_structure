@@ -1,4 +1,6 @@
 from exos.exo14 import out_of_stock_products
+
+
 def test_out_of_stock_products():
     products = {
         1: {'price': 100, 'quantity': 0},

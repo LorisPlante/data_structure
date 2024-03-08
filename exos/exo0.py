@@ -5,7 +5,7 @@ class Calculate:
 
     def add(self):
         return self.a + self.b
-    
+
     def subtract(self):
         return self.a - self.b
 
